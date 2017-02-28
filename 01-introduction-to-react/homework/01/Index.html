@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Blog</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.0/react.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.0/react-dom.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.6.15/browser.js"></script>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+	<div id="content"></div>
+  <script type="text/babel">
+
+		var ARTICLES = [
+			{
+				id: 1,
+				title: 'First step',
+				author: 'ByQ',
+				content: 'Hello, world!',
+				avatar: 'https://avatars3.githubusercontent.com/u/3399375'
+			},
+			{
+				id: 2,
+				title: 'Second step',
+				author: 'ByQ',
+				content: 'Hello, React!',
+				avatar: 'https://avatars3.githubusercontent.com/u/3399375'
+			}
+		];
+
+		var Article = React.createClass({
+			render: function() {
+				return (
+					<li className="article">
+						<div>
+							<img className="avatar" src={this.props.avatar} width="60px" height="60px" alt="Author avatar" />
+							<div className="article-author">{this.props.author}</div>
+						</div>
+
+						<div>
+							<div className="article-title">{this.props.title}</div>
+							<div className="article-content">{this.props.content}</div>
+						</div>
+					</li>
+				);
+			}
+		});
+
+		var ArticlesList = React.createClass({
+			getInitialState: function() {
+				return {
+					displayedArticles: ARTICLES
+				};
+			},
+
+			render: function() {
+				return (
+					<div className="articles">
+						<ul className="articles-list">
+							{
+								this.state.displayedArticles.map(function(el) {
+									return <Article
+										key={el.id}
+										title={el.title}
+										author={el.author}
+										content={el.content}
+										avatar={el.avatar}
+									/>
+								})
+							}
+						</ul>
+					</div>
+				);
+			}
+		});
+
+		ReactDOM.render(
+			<ArticlesList />,
+			document.getElementById("content")
+		);
+
+	</script>
+</body>
+</html>
