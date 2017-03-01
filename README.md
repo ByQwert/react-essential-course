@@ -4,7 +4,7 @@ ITVDN — Information Technology Video Developer Network
 
 ## Содержание
 
-#### [УРОК 1: Введение в React](/01-introduction-to-react) (75%)
+#### [УРОК 1: Введение в React](/01-introduction-to-react) (100%)
 #### [УРОК 2: Подробнее о компонентах](/02-deep-in-components) (0%)
 #### [УРОК 3: Настройка окружения, подключение внешних библиотек и сборка](/03-environment) (0%)
 #### [УРОК 4: ES2015, роутинг, CSS препроцессоры, PropTypes, контекст](/04-routing-and-es6) (0%)
