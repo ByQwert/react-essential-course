@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Calculator</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.0/react.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.0/react-dom.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.6.15/browser.js"></script>
+</head>
+<body>
+	<div id="content"></div>
+	<script type="text/babel">
+	
+		// Brute-force solution. Mb later I will add eval() or regular expressions to filter inputs
+		var Calculator = React.createClass({
+
+			getInitialState: function() {
+				return {
+					inputFirst: 0,
+					inputSecond: 0,
+					result: 0
+				}
+			},
+	
+			handleChange: function (event) {
+				if (event.target.id === "first-input") {
+					this.setState({
+						inputFirst: parseInt(event.target.value)
+					});
+				} else {
+					this.setState({
+						secondInput: parseInt(event.target.value)
+					});
+				}
+			},
+
+			handleClick: function (event) {
+				var result = 0;
+				switch (event.target.value) {
+					case '+': result = this.state.inputFirst+this.state.secondInput; break;
+					case '-': result = this.state.inputFirst-this.state.secondInput; break;
+					case '*': result = this.state.inputFirst*this.state.secondInput; break;
+				}
+				this.setState({
+					result: result
+				});
+			},
+
+			render: function() {
+				return (
+					<div>
+						<input id="first-input" type="text" onChange={this.handleChange} />
+						<br />
+						<input id="second-input" type="text" onChange={this.handleChange} />
+						<br />
+						<button value="+" onClick={this.handleClick}>+</button>
+						<button value="-" onClick={this.handleClick}>-</button>
+						<button value="*" onClick={this.handleClick}>*</button>
+						<br />
+						{this.state.result}
+					</div>
+				);
+			}
+		});
+
+		ReactDOM.render(
+			<Calculator />,
+			document.getElementById("content")
+		);
+
+	</script>
+</body>
+</html>
